@@ -9,9 +9,12 @@ def ngrok_config():
 
 
 def get_public_url(ngrok_token, port):
-    config = ngrok_config()
-    conf.set_default(config)
-    ngrok.set_auth_token(ngrok_token)
-    ngrok_tunnel = ngrok.connect(port, bind_tls=True)
-    public_url = ngrok_tunnel.public_url
-    return public_url
+    try:
+        config = ngrok_config()
+        conf.set_default(config)
+        ngrok.set_auth_token(ngrok_token)
+        ngrok_tunnel = ngrok.connect(port, bind_tls=True)
+        public_url = ngrok_tunnel.public_url
+        return public_url
+    except Exception:  # noqa
+        return None

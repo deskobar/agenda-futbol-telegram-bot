@@ -17,9 +17,11 @@ async def handler(request: Request):
 
 @app.on_event("startup")
 async def on_startup():
-    await bot.set_webhook(url=PUBLIC_URL)
+    if PUBLIC_URL:
+        await bot.set_webhook(url=PUBLIC_URL)
 
 
 @app.on_event("shutdown")
 async def on_shutdown():
-    await bot.remove_webhook()
+    if PUBLIC_URL:
+        await bot.remove_webhook()
