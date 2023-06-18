@@ -1,6 +1,6 @@
 import logging
 
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import CommandHandler, ApplicationBuilder
 
 from commands import (all, date, help, start, today, when, version, set_alias)
 from settings import TELEGRAM_TOKEN
@@ -22,17 +22,11 @@ command_handlers = [
     {"command": "set_alias", "function": set_alias},
 ]
 
-
-def main():
-    updater = Updater(TELEGRAM_TOKEN)
-    dispatcher = updater.dispatcher
+if __name__ == '__main__':
+    app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
 
     for handler in command_handlers:
-        dispatcher.add_handler(CommandHandler(handler["command"], handler["function"]))
+        app.add_handler(CommandHandler(handler["command"], handler["function"]))
 
-    updater.start_polling()
-    updater.idle()
-
-
-if __name__ == '__main__':
-    main()
+    app.run_polling()
+    app.r

@@ -1,8 +1,8 @@
 from answers import HOW_TO_USAGE
 
 
-def start(update, context):
+async def start(update, _context):
     """
     Send a message when the command /start is issued.
     """
-    update.message.reply_text(HOW_TO_USAGE)
+    await update.message.reply_text(HOW_TO_USAGE)
