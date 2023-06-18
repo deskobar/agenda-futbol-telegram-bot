@@ -55,7 +55,6 @@ pyparsing = "3.0.9"
 pyrsistent = "0.18.1"
 python-dateutil = "2.8.2"
 python-decouple = "3.6"
-python-telegram-bot = "^20.3"
 pytz = "2022.1"
 pytz-deprecation-shim = "0.1.0.post0"
 pyzmq = "23.2.0"
@@ -70,8 +69,12 @@ tzdata = "2022.1"
 tzlocal = "4.2"
 urllib3 = "1.26.11"
 webencodings = "0.5.1"
-websockets = "10.3"
 yarl = "1.7.2"
+pyngrok = "^6.0.0"
+pytelegrambotapi = "^4.12.0"
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
+typing-extensions = "^4.6.3"
+fastapi = "^0.97.0"
 
 
 [build-system]

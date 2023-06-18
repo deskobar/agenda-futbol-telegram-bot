@@ -12,5 +12,4 @@ RUN poetry install
 COPY . .
 
 ENTRYPOINT ["poetry", "run"]
-CMD ["python", "bot.py"]
-
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
