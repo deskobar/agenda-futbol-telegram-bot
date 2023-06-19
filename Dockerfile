@@ -1,4 +1,4 @@
-FROM python:3.10.9-slim-buster
+FROM python:3.10.9
 
 WORKDIR /app
 
@@ -11,5 +11,7 @@ RUN poetry install
 
 COPY . .
 
+EXPOSE 8080
+
 ENTRYPOINT ["poetry", "run"]
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]

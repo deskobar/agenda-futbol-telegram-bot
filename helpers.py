@@ -1,17 +1,15 @@
-from pyngrok import ngrok, conf
-
-
-def ngrok_config():
-    default_config = conf.get_default()
-    default_config.config_path = "./ngrok.yml"
-    default_config.region = "us"
-    return default_config
+def configure_ngrok():
+    from pyngrok import conf
+    config = conf.get_default()
+    config.config_path = "./ngrok.yml"
+    config.region = "us"
+    conf.set_default(config)
 
 
 def get_public_url(ngrok_token, port):
     try:
-        config = ngrok_config()
-        conf.set_default(config)
+        from pyngrok import ngrok
+        configure_ngrok()
         ngrok.set_auth_token(ngrok_token)
         ngrok_tunnel = ngrok.connect(port, bind_tls=True)
         public_url = ngrok_tunnel.public_url

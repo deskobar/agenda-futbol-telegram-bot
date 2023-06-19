@@ -1,3 +1,5 @@
+import asyncio
+
 import telebot
 from fastapi import FastAPI, Request
 
@@ -17,11 +19,11 @@ async def handler(request: Request):
 
 @app.on_event("startup")
 async def on_startup():
-    if PUBLIC_URL:
-        await bot.set_webhook(url=PUBLIC_URL)
+    await bot.set_webhook(url=PUBLIC_URL)
 
 
 @app.on_event("shutdown")
 async def on_shutdown():
-    if PUBLIC_URL:
-        await bot.remove_webhook()
+    await bot.remove_webhook()
+    await asyncio.sleep(1)
+    await bot.close()
