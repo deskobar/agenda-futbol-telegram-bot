@@ -21,8 +21,9 @@ HOW_TO_USAGE = """
     - Python
     - FastAPI
     - GraphQL
-    - ORM (SQLAlchemy)
-    - SQLite
+    - ormar (SQLAlchemy)
+    - AWS Aurora PostgreSQL
+    - pyTelegramBotAPI
     """
 
 # /fecha
@@ -52,7 +53,7 @@ ALL_WITH_NO_COINCIDENCES = """
 # /version
 
 VERSION = """
-    0.3.0
+    1.1.0
 """
 
 # /set_alias
