@@ -1,3 +1,8 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 def configure_ngrok():
     from pyngrok import conf
     config = conf.get_default()
@@ -14,5 +19,6 @@ def get_public_url(ngrok_token, port):
         ngrok_tunnel = ngrok.connect(port, bind_tls=True)
         public_url = ngrok_tunnel.public_url
         return public_url
-    except Exception:  # noqa
+    except Exception as e:  # noqa
+        logger.exception("Error getting public url", e)
         return None
