@@ -1,10 +1,11 @@
+from pyngrok import ngrok, conf
+
 import logging
 
 logger = logging.getLogger(__name__)
 
 
 def configure_ngrok():
-    from pyngrok import conf
     config = conf.get_default()
     config.config_path = "./ngrok.yml"
     config.region = "us"
@@ -13,7 +14,6 @@ def configure_ngrok():
 
 def get_public_url(ngrok_token, port):
     try:
-        from pyngrok import ngrok
         configure_ngrok()
         ngrok.set_auth_token(ngrok_token)
         ngrok_tunnel = ngrok.connect(port, bind_tls=True)

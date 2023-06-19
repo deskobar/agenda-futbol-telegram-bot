@@ -2,6 +2,7 @@ import asyncio
 
 import telebot
 from fastapi import FastAPI, Request
+from pyngrok import ngrok
 
 from bot import bot
 from settings import PUBLIC_URL
@@ -30,3 +31,4 @@ async def on_shutdown():
         await bot.remove_webhook()
     finally:
         await asyncio.sleep(1)
+        ngrok.kill()
