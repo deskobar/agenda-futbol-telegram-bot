@@ -24,6 +24,9 @@ async def on_startup():
 
 @app.on_event("shutdown")
 async def on_shutdown():
-    await bot.remove_webhook()
-    await asyncio.sleep(1)
-    await bot.close()
+    try:
+        await bot.delete_webhook()
+    except Exception:  # noqa
+        await bot.remove_webhook()
+    finally:
+        await asyncio.sleep(1)
