@@ -391,6 +391,21 @@ files = [
 ]
 
 [[package]]
+name = "cssutils"
+version = "2.7.1"
+description = "A CSS Cascading Style Sheets library for Python"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "cssutils-2.7.1-py3-none-any.whl", hash = "sha256:1e92e0d9dab2ec8af9f38d715393964ba533dc3beacab9b072511dfc241db775"},
+    {file = "cssutils-2.7.1.tar.gz", hash = "sha256:340ecfd9835d21df8f98500f0dfcea0aee41cb4e19ecbc2cf94f0a6d36d7cb6c"},
+]
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
+testing = ["cssselect", "importlib-resources", "jaraco.test (>=5.1)", "lxml", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-mypy (>=0.9.1)", "pytest-ruff"]
+
+[[package]]
 name = "cycler"
 version = "0.11.0"
 description = "Composable style cycles"
@@ -403,21 +418,25 @@ files = [
 
 [[package]]
 name = "dataframe-image"
-version = "0.1.1"
+version = "0.1.11"
 description = "Embed pandas DataFrames as images in pdf and markdown files when converting from Jupyter Notebooks"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "dataframe_image-0.1.1-py3-none-any.whl", hash = "sha256:84170c105587610bf93ff1bc0bb31894c39cde27aa7b8ffe9a82973d3ef0416c"},
-    {file = "dataframe_image-0.1.1.tar.gz", hash = "sha256:8d6739da53c66bd557f217237bab45943a452760b808bb7a3e635a939eed0bb5"},
+    {file = "dataframe_image-0.1.11-py3-none-any.whl", hash = "sha256:35783a02e863c4fe46c3c31c6ef6771a78a184f5c3e85b961de004b429295514"},
 ]
 
 [package.dependencies]
 aiohttp = "*"
 beautifulsoup4 = "*"
-matplotlib = ">=3.1"
+cssutils = "*"
+html2image = "*"
+lxml = "*"
+mistune = "*"
 nbconvert = ">=5"
+packaging = "*"
 pandas = ">=0.24"
+pillow = "*"
 requests = "*"
 
 [[package]]
@@ -627,6 +646,17 @@ python-versions = ">=3.7"
 files = [
     {file = "h11-0.14.0-py3-none-any.whl", hash = "sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761"},
     {file = "h11-0.14.0.tar.gz", hash = "sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d"},
+]
+
+[[package]]
+name = "html2image"
+version = "2.0.3"
+description = "Package acting as a wrapper around the headless mode of existing web browsers to generate images from URLs and from HTML+CSS strings or files."
+optional = false
+python-versions = ">=3.6,<4.0"
+files = [
+    {file = "html2image-2.0.3-py3-none-any.whl", hash = "sha256:2dcc01a36eaa0887b35c87f847628e57e830fcbc03852079e9e8812af26c78bc"},
+    {file = "html2image-2.0.3.tar.gz", hash = "sha256:fd6c6b867c1b1ebcdab25b3847f1dd2271e11c1cddb8b5b11b09b25e09b1f1d0"},
 ]
 
 [[package]]
@@ -2254,4 +2284,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "3.10.9"
-content-hash = "b391392611818cdd8a4f7d4f0a4c5a89759e53d697c0d3b9bdeb0a7b4f32a4b4"
+content-hash = "a3005aab3741fac19c9e43df046da2385877f9163f4b5a7aa0b526cb51180ec8"
