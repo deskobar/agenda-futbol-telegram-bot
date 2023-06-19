@@ -25,10 +25,4 @@ async def on_startup():
 
 @app.on_event("shutdown")
 async def on_shutdown():
-    try:
-        await bot.delete_webhook()
-    except Exception:  # noqa
-        await bot.remove_webhook()
-    finally:
-        await asyncio.sleep(1)
-        ngrok.kill()
+    ngrok.kill()
