@@ -1,6 +1,6 @@
-from pyngrok import ngrok, conf
-
 import logging
+
+from pyngrok import ngrok, conf
 
 logger = logging.getLogger(__name__)
 

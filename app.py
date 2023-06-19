@@ -1,11 +1,10 @@
-import asyncio
-
+import requests
 import telebot
 from fastapi import FastAPI, Request
 from pyngrok import ngrok
 
 from bot import bot
-from settings import PUBLIC_URL
+from settings import PUBLIC_URL, TELEGRAM_TOKEN
 
 app = FastAPI()
 
@@ -20,7 +19,8 @@ async def handler(request: Request):
 
 @app.on_event("startup")
 async def on_startup():
-    await bot.set_webhook(url=PUBLIC_URL)
+    base_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/setWebhook?url={PUBLIC_URL}"
+    requests.post(base_url)
 
 
 @app.on_event("shutdown")

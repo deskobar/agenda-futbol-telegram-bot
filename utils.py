@@ -1,7 +1,6 @@
-import dataframe_image as dfi
 import io
-import base64
-from PIL import Image
+
+import dataframe_image as dfi
 import pandas as pd
 
 

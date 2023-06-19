@@ -1,14 +1,9 @@
 import logging
+from datetime import datetime
 
-from settings import TELEGRAM_TOKEN
+import pandas as pd
+import pytz
 from telebot.async_telebot import AsyncTeleBot
-
-from client.queries import (
-    events,
-    events_substring,
-    events_per_date,
-    set_alias as set_alias_mutation,
-)
 
 from answers import (
     ALL_WITH_NO_COINCIDENCES,
@@ -21,15 +16,14 @@ from answers import (
     WHEN_WITHOUT_ARGS,
     WHEN_WITH_NO_COINCIDENCES, INVALID_COMMAND
 )
-
-from datetime import datetime
-
-import pytz
-
-import pandas as pd
-
 from client.graphql import client
-
+from client.queries import (
+    events,
+    events_substring,
+    events_per_date,
+    set_alias as set_alias_mutation,
+)
+from settings import TELEGRAM_TOKEN
 from utils import send_img_or_msg_if_no_content
 
 logging.basicConfig(
@@ -143,5 +137,5 @@ async def when(message):
 
 
 @bot.message_handler(func=lambda message: True)
-def invalid_cmd(message):
-    bot.reply_to(message, INVALID_COMMAND)
+async def invalid_cmd(message):
+    await bot.reply_to(message, INVALID_COMMAND)
