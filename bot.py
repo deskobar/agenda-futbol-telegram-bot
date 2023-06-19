@@ -19,7 +19,7 @@ from answers import (
     DATE_WITH_NO_COINCIDENCES,
     VERSION,
     WHEN_WITHOUT_ARGS,
-    WHEN_WITH_NO_COINCIDENCES
+    WHEN_WITH_NO_COINCIDENCES, INVALID_COMMAND
 )
 
 from datetime import datetime
@@ -140,3 +140,8 @@ async def when(message):
         events_result = result['eventsMatchText']
         events_df = pd.DataFrame(events_result)
         await send_img_or_msg_if_no_content(message, events_df, WHEN_WITH_NO_COINCIDENCES, substring)
+
+
+@bot.message_handler(func=lambda message: True)
+def invalid_cmd(message):
+    bot.reply_to(message, INVALID_COMMAND)

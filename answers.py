@@ -64,3 +64,7 @@ ALIAS_ADDED_SUCCESSFULLY = """
 ALIAS_WITHOUT_ARGS = """
     Debes enviar /set_alias <tu equipo> <tu alias en una sola palabra>
 """
+
+INVALID_COMMAND = """
+    No entiendo el comando que me enviaste, prueba con /help para ver los comandos disponibles.
+"""
