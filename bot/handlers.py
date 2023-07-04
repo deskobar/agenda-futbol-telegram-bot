@@ -16,6 +16,7 @@ from bot.answers import (
     INVALID_COMMAND
 )
 from bot.client import bot
+from bot.common import send_img_or_msg_if_no_content
 from gql_client.graphql import client
 from gql_client.queries import (
     events,
@@ -23,7 +24,6 @@ from gql_client.queries import (
     events_per_date,
     set_alias as set_alias_mutation,
 )
-from utils import send_img_or_msg_if_no_content
 
 
 @bot.message_handler(commands=['todo'])
@@ -46,12 +46,12 @@ async def cmd_date(message):
     [_command, *body] = message.text.split(' ')
     if len(body) != 1:
         await bot.reply_to(message, DATE_WITHOUT_ARGS)
-    else:
-        date = body[0]
-        result = await client.execute_async(events_per_date, variable_values={"date": date})
-        events_result = result['eventsPerDate']
-        events_df = pd.DataFrame(events_result)
-        await send_img_or_msg_if_no_content(message, events_df, DATE_WITH_NO_COINCIDENCES, date)
+        return
+    date = body[0]
+    result = await client.execute_async(events_per_date, variable_values={"date": date})
+    events_result = result['eventsPerDate']
+    events_df = pd.DataFrame(events_result)
+    await send_img_or_msg_if_no_content(message, events_df, DATE_WITH_NO_COINCIDENCES, date)
 
 
 @bot.message_handler(commands=['help', 'start'])
@@ -70,18 +70,18 @@ async def cmd_set_alias(message):
     [_command, *body] = message.text.split(' ')
     if len(body) < 2:
         await bot.reply_to(message, ALIAS_WITHOUT_ARGS)
-    else:
-        user_id = message.chat.id
-        [*team_name, alias] = body
-        await client.execute_async(
-            set_alias_mutation,
-            variable_values={
-                "userId": str(user_id),
-                "teamName": " ".join(team_name).lower(),
-                "alias": alias
-            }
-        )
-        await bot.reply_to(message, ALIAS_ADDED_SUCCESSFULLY)
+        return
+    user_id = message.chat.id
+    [*team_name, alias] = body
+    await client.execute_async(
+        set_alias_mutation,
+        variable_values={
+            "userId": str(user_id),
+            "teamName": " ".join(team_name).lower(),
+            "alias": alias
+        }
+    )
+    await bot.reply_to(message, ALIAS_ADDED_SUCCESSFULLY)
 
 
 @bot.message_handler(commands=['hoy'])
