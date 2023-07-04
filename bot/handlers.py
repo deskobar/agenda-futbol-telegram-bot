@@ -1,11 +1,9 @@
-import logging
 from datetime import datetime
 
 import pandas as pd
 import pytz
-from telebot.async_telebot import AsyncTeleBot
 
-from answers import (
+from bot.answers import (
     ALL_WITH_NO_COINCIDENCES,
     HOW_TO_USAGE,
     DATE_WITHOUT_ARGS,
@@ -14,25 +12,18 @@ from answers import (
     DATE_WITH_NO_COINCIDENCES,
     VERSION,
     WHEN_WITHOUT_ARGS,
-    WHEN_WITH_NO_COINCIDENCES, INVALID_COMMAND
+    WHEN_WITH_NO_COINCIDENCES,
+    INVALID_COMMAND
 )
-from client.graphql import client
-from client.queries import (
+from bot.client import bot
+from gql_client.graphql import client
+from gql_client.queries import (
     events,
     events_substring,
     events_per_date,
     set_alias as set_alias_mutation,
 )
-from settings import TELEGRAM_TOKEN
 from utils import send_img_or_msg_if_no_content
-
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
-)
-
-logger = logging.getLogger(__name__)
-
-bot = AsyncTeleBot(TELEGRAM_TOKEN, allow_sending_without_reply=True)
 
 
 @bot.message_handler(commands=['todo'])
@@ -72,7 +63,7 @@ async def cmd_help(message):
 
 
 @bot.message_handler(commands=['set_alias'])
-async def set_alias(message):
+async def cmd_set_alias(message):
     """
     Set alias to specific team for a given user
     """
@@ -94,7 +85,7 @@ async def set_alias(message):
 
 
 @bot.message_handler(commands=['hoy'])
-async def today(message):
+async def cmd_today(message):
     """
     Send all the events of the current day
     """
@@ -106,7 +97,7 @@ async def today(message):
 
 
 @bot.message_handler(commands=['version'])
-async def version(message):
+async def cmd_version(message):
     """
     Send a message when the command /version is issued.
     """
@@ -114,7 +105,7 @@ async def version(message):
 
 
 @bot.message_handler(commands=['cuando'])
-async def when(message):
+async def cmd_when(message):
     """
     Given all the events that contains a substring given in their columns
     """
@@ -138,4 +129,5 @@ async def when(message):
 
 @bot.message_handler(func=lambda message: True)
 async def invalid_cmd(message):
+    """Default handler for every other text"""
     await bot.reply_to(message, INVALID_COMMAND)

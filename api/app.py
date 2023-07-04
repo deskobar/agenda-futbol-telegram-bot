@@ -25,4 +25,7 @@ async def on_startup():
 
 @app.on_event("shutdown")
 async def on_shutdown():
-    ngrok.kill()
+    try:
+        ngrok.kill()
+    except Exception:  # noqa
+        pass
