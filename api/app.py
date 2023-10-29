@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 import telebot
 from fastapi import FastAPI, Request
 from pyngrok import ngrok
@@ -19,8 +19,10 @@ async def handler(request: Request):
 
 @app.on_event("startup")
 async def on_startup():
-    base_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/setWebhook?url={PUBLIC_URL}"
-    requests.post(base_url)
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/setWebhook?url={PUBLIC_URL}"    
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url) as r:
+            return r.status
 
 
 @app.on_event("shutdown")
