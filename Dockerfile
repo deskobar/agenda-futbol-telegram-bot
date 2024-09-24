@@ -4,14 +4,21 @@ WORKDIR /app
 
 RUN pip install --upgrade pip && pip install "poetry==1.4.2"
 
-COPY poetry.lock .
-COPY pyproject.toml .
+COPY poetry.lock pyproject.toml ./
 
-RUN poetry install
+ENV POETRY_VIRTUALENVS_IN_PROJECT=true
+
+RUN poetry install --no-root
 
 COPY . .
 
-EXPOSE 8080
+# Change ownership of the app directory to the non-root user
+RUN groupadd -r appuser && useradd -r -g appuser appuser && chown -R appuser:appuser /app
+# Switch to non-root user
+USER appuser
 
-ENTRYPOINT ["poetry", "run"]
-CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8080"]
+ENV PORT=8080
+
+EXPOSE ${PORT}
+
+CMD poetry run uvicorn api.app:app --host 0.0.0.0 --port $PORT
