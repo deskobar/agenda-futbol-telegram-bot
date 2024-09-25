@@ -69,3 +69,5 @@ ALIAS_WITHOUT_ARGS = """
 INVALID_COMMAND = """
     No entiendo el comando que me enviaste, prueba con /help para ver los comandos disponibles.
 """
+
+WAKING_UP = "Procesando... 🕰️"

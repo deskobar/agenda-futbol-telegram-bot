@@ -17,6 +17,7 @@ from bot.answers import (
 )
 from bot.client import bot
 from bot.common import send_img_or_msg_if_no_content
+from bot.decorator import db_waking_up
 from gql_client.graphql import client
 from gql_client.queries import (
     events,
@@ -24,10 +25,12 @@ from gql_client.queries import (
     events_per_date,
     set_alias as set_alias_mutation,
 )
+from telebot.types import Message
 
 
 @bot.message_handler(commands=['todo'])
-async def cmd_all_events(message):
+@db_waking_up
+async def cmd_all_events(message: Message):
     """
     Return all the events available
     """
@@ -38,7 +41,8 @@ async def cmd_all_events(message):
 
 
 @bot.message_handler(commands=['fecha'])
-async def cmd_date(message):
+@db_waking_up
+async def cmd_date(message: Message):
     """
     Send all the events for a given string date
     """
@@ -54,7 +58,8 @@ async def cmd_date(message):
 
 
 @bot.message_handler(commands=['help', 'start'])
-async def cmd_help(message):
+@db_waking_up
+async def cmd_help(message: Message):
     """
     Send a message when the command /help is issued.
     """
@@ -62,7 +67,8 @@ async def cmd_help(message):
 
 
 @bot.message_handler(commands=['set_alias'])
-async def cmd_set_alias(message):
+@db_waking_up
+async def cmd_set_alias(message: Message):
     """
     Set alias to specific team for a given user
     """
@@ -84,7 +90,8 @@ async def cmd_set_alias(message):
 
 
 @bot.message_handler(commands=['hoy'])
-async def cmd_today(message):
+@db_waking_up
+async def cmd_today(message: Message):
     """
     Send all the events of the current day
     """
@@ -96,7 +103,7 @@ async def cmd_today(message):
 
 
 @bot.message_handler(commands=['version'])
-async def cmd_version(message):
+async def cmd_version(message: Message):
     """
     Send a message when the command /version is issued.
     """
@@ -104,7 +111,8 @@ async def cmd_version(message):
 
 
 @bot.message_handler(commands=['cuando'])
-async def cmd_when(message):
+@db_waking_up
+async def cmd_when(message: Message):
     """
     Given all the events that contains a substring given in their columns
     """
@@ -127,6 +135,6 @@ async def cmd_when(message):
 
 
 @bot.message_handler(func=lambda message: True)
-async def invalid_cmd(message):
+async def invalid_cmd(message: Message):
     """Default handler for every other text"""
     await bot.reply_to(message, INVALID_COMMAND)
