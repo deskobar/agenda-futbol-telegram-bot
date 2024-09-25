@@ -53,7 +53,7 @@ ALL_WITH_NO_COINCIDENCES = """
 # /version
 
 VERSION = """
-    3.1.0
+    3.2.0
 """
 
 # /set_alias
@@ -71,3 +71,5 @@ INVALID_COMMAND = """
 """
 
 WAKING_UP = "Procesando... 🕰️"
+
+SOMETHING_HAPPENED = "Algo salió mal, intenta más tarde 🥺"

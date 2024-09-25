@@ -17,7 +17,7 @@ from bot.answers import (
 )
 from bot.client import bot
 from bot.common import send_img_or_msg_if_no_content
-from bot.decorator import db_waking_up
+from bot.decorator import waking_up
 from gql_client.graphql import client
 from gql_client.queries import (
     events,
@@ -29,7 +29,7 @@ from telebot.types import Message
 
 
 @bot.message_handler(commands=['todo'])
-@db_waking_up
+@waking_up
 async def cmd_all_events(message: Message):
     """
     Return all the events available
@@ -41,7 +41,7 @@ async def cmd_all_events(message: Message):
 
 
 @bot.message_handler(commands=['fecha'])
-@db_waking_up
+@waking_up
 async def cmd_date(message: Message):
     """
     Send all the events for a given string date
@@ -58,7 +58,7 @@ async def cmd_date(message: Message):
 
 
 @bot.message_handler(commands=['help', 'start'])
-@db_waking_up
+@waking_up
 async def cmd_help(message: Message):
     """
     Send a message when the command /help is issued.
@@ -67,7 +67,7 @@ async def cmd_help(message: Message):
 
 
 @bot.message_handler(commands=['set_alias'])
-@db_waking_up
+@waking_up
 async def cmd_set_alias(message: Message):
     """
     Set alias to specific team for a given user
@@ -90,7 +90,7 @@ async def cmd_set_alias(message: Message):
 
 
 @bot.message_handler(commands=['hoy'])
-@db_waking_up
+@waking_up
 async def cmd_today(message: Message):
     """
     Send all the events of the current day
@@ -111,7 +111,7 @@ async def cmd_version(message: Message):
 
 
 @bot.message_handler(commands=['cuando'])
-@db_waking_up
+@waking_up
 async def cmd_when(message: Message):
     """
     Given all the events that contains a substring given in their columns
