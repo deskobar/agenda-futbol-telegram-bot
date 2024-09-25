@@ -15,7 +15,7 @@ La documentación escrita hasta el momento corresponde a:
 ```
     /todo
         Entrega todos los eventos disponibles
-    /hoy 
+    /hoy
         Entrega los eventos del día (a la hora de Chile, timezone America/Santiago)
     /fecha <fecha>
         Entrega los eventos para la fecha dada, debe estar en formato YYYY-MM-DD
@@ -35,5 +35,5 @@ Si eres ñoño como yo, te encantará saber cuales son las tecnologías usadas:
 - ORM (SQLAlchemy) para consultar la base de datos
 - Aurora Serverless PostgreSQL como base de datos de PRD
 
---- 
+---
 Cualquier cosa contactarme a david.escobar@ug.uchile.cl

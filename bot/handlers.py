@@ -42,7 +42,6 @@ async def cmd_date(message):
     """
     Send all the events for a given string date
     """
-    # print(message)
     [_command, *body] = message.text.split(' ')
     if len(body) != 1:
         await bot.reply_to(message, DATE_WITHOUT_ARGS)

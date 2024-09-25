@@ -69,7 +69,7 @@ urllib3 = "1.26.11"
 webencodings = "0.5.1"
 yarl = "1.7.2"
 pyngrok = "^6.0.0"
-pytelegrambotapi = "^4.12.0"
+pytelegrambotapi = "^4.23.0"
 uvicorn = {extras = ["standard"], version = "^0.22.0"}
 typing-extensions = "^4.6.3"
 fastapi = "^0.97.0"
