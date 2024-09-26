@@ -6,7 +6,7 @@ HOW_TO_USAGE = """
 
     /todo
         Entrega todos los eventos disponibles
-    /hoy 
+    /hoy
         Entrega los eventos del día (a la hora de Chile)
     /fecha <fecha>
         Entrega los eventos para la fecha dada, debe estar en formato YYYY-MM-DD
@@ -22,7 +22,7 @@ HOW_TO_USAGE = """
     - FastAPI
     - GraphQL
     - ormar (SQLAlchemy)
-    - AWS Aurora PostgreSQL
+    - Neon Tech (PostgreSQL)
     - pyTelegramBotAPI
     """
 
@@ -53,7 +53,7 @@ ALL_WITH_NO_COINCIDENCES = """
 # /version
 
 VERSION = """
-    3.3.0
+    3.4.0
 """
 
 # /set_alias
@@ -70,6 +70,6 @@ INVALID_COMMAND = """
     No entiendo el comando que me enviaste, prueba con /help para ver los comandos disponibles.
 """
 
-WAKING_UP = "Procesando... 🕰️"
+WAKING_UP = "Estoy despertando 🥱. En camino a procesarlo 🚀"
 
 SOMETHING_HAPPENED = "Algo salió mal, intenta más tarde 🥺"
