@@ -53,7 +53,7 @@ ALL_WITH_NO_COINCIDENCES = """
 # /version
 
 VERSION = """
-    3.6.0
+    3.7.0
 """
 
 # /set_alias
@@ -70,6 +70,6 @@ INVALID_COMMAND = """
     No entiendo el comando que me enviaste, prueba con /help para ver los comandos disponibles.
 """
 
-WAKING_UP = "Estoy despertando 🥱. En camino a procesarlo 🚀"
+WAKING_UP = "Estaba despertando 🥱. Voy corriendo a procesarlo 🏃‍♂️‍➡️"
 
 SOMETHING_HAPPENED = "Algo salió mal, intenta más tarde 🥺"
