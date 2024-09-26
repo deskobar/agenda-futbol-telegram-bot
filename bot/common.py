@@ -23,7 +23,7 @@ def df_to_image(df: pd.DataFrame) -> io.BytesIO:
     image_stream.seek(0)
 
     with Image.open(image_stream) as image:
-        image.save(image_stream, format='svg', optimize=True)
+        image.save(image_stream, format='png', optimize=True)
 
     image_stream.seek(0)
     plt.close(fig)
