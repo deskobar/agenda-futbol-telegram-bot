@@ -10,7 +10,7 @@ import uuid
 
 def df_to_image(df: pd.DataFrame, dpi: int = 300) -> io.BytesIO:
     plt.ioff()
-    fig = plt.figure(figsize=(df.shape[1] * 2, df.shape[0] * 0.5), num=uuid.uuid4().hex)
+    fig = plt.figure(figsize=(df.shape[1] * 2, df.shape[0] * 0.5), num=uuid.uuid4().hex, dpi=float(dpi))
     ax = fig.gca()
     ax.axis('off')
     table = ax.table(cellText=df.values, colLabels=df.columns, cellLoc='center', loc='center')

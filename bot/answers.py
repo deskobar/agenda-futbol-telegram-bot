@@ -1,9 +1,9 @@
 # /start
 HOW_TO_USAGE = """
     Bienvenido! Este bot responde a la pregunta quién juega hoy?
-    
+
     Los comandos con que me puedes llamar son:
-    
+
     /todo
         Entrega todos los eventos disponibles
     /hoy 
@@ -16,7 +16,7 @@ HOW_TO_USAGE = """
         Agrega un alias para tu equipo favorito, para que puedas buscarlo más fácilmente.
     /version
         Entrega la versión del bot.
-    
+
     Si eres ñoño como yo, te encantará saber cuales son las tecnologías usadas:
     - Python
     - FastAPI
@@ -53,7 +53,7 @@ ALL_WITH_NO_COINCIDENCES = """
 # /version
 
 VERSION = """
-    3.2.0
+    3.3.0
 """
 
 # /set_alias
