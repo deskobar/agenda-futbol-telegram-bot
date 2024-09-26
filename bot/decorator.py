@@ -12,6 +12,7 @@ def waking_up(func):
             message: Message = args[0]
             chat_id = message.chat.id
             message = await bot.reply_to(message, WAKING_UP)
+            bot.send_chat_action(chat_id, "typing", timeout=30)
             result = await func(*args, **kwargs)
             await bot.delete_message(chat_id, message.message_id)
             return result
