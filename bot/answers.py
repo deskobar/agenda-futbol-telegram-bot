@@ -53,7 +53,7 @@ ALL_WITH_NO_COINCIDENCES = """
 # /version
 
 VERSION = """
-    3.7.0
+    3.8.0
 """
 
 # /set_alias
