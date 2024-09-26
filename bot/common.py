@@ -3,23 +3,24 @@ from telebot.types import Message, InputFile
 import matplotlib.pyplot as plt
 from bot import bot
 
-from io import BytesIO
+import io
 from PIL import Image
 
 
-def df_to_image(df: pd.DataFrame, dpi: int = 300) -> BytesIO:
-    image_stream = BytesIO()
-    fig, ax = plt.subplots(figsize=(df.shape[1] * 2, df.shape[0] * 0.5))  # Adjust size based on DataFrame shape
+def df_to_image(df: pd.DataFrame, dpi: int = 300) -> io.BytesIO:
+    fig, ax = plt.subplots(figsize=(df.shape[1] * 2, df.shape[0] * 0.5))
     ax.axis('off')
     table = ax.table(cellText=df.values, colLabels=df.columns, cellLoc='center', loc='center')
     table.scale(1, 1.5)
-    plt.savefig(image_stream, format='png', bbox_inches='tight', dpi=dpi, transparent=True)
-    plt.close(fig)
-    image_stream.seek(0)
-    with Image.open(image_stream) as image:
-        optimized_stream = BytesIO()
-        image.save(optimized_stream, format='PNG', optimize=True)
-    optimized_stream.seek(0)
+
+    with io.BytesIO() as image_stream:
+        plt.savefig(image_stream, format='png', bbox_inches='tight', dpi=dpi, transparent=True)
+        image_stream.seek(0)
+        with Image.open(image_stream) as image:
+            optimized_stream = io.BytesIO()
+            image.save(optimized_stream, format='PNG', optimize=True)
+        optimized_stream.seek(0)
+    plt.close()
     return optimized_stream
 
 
