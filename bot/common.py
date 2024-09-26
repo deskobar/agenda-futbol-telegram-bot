@@ -7,17 +7,19 @@ import io
 from PIL import Image
 import uuid
 
+from settings import DPI
 
-def df_to_image(df: pd.DataFrame, dpi: int = 300) -> io.BytesIO:
+
+def df_to_image(df: pd.DataFrame) -> io.BytesIO:
     plt.ioff()
-    fig = plt.figure(figsize=(df.shape[1] * 2, df.shape[0] * 0.5), num=uuid.uuid4().hex, dpi=float(dpi))
+    fig = plt.figure(figsize=(df.shape[1] * 2, df.shape[0] * 0.5), num=uuid.uuid4().hex, dpi=float(DPI))
     ax = fig.gca()
     ax.axis('off')
     table = ax.table(cellText=df.values, colLabels=df.columns, cellLoc='center', loc='center')
     table.scale(1, 1.5)
 
     image_stream = io.BytesIO()
-    fig.savefig(image_stream, format='png', bbox_inches='tight', dpi=dpi, transparent=True)
+    fig.savefig(image_stream, format='png', bbox_inches='tight', dpi=DPI, transparent=True)
     image_stream.seek(0)
 
     with Image.open(image_stream) as image:
