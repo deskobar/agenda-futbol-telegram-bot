@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from bot import bot
 
 import io
-from PIL import Image
 import uuid
 
 from settings import DPI
@@ -16,15 +15,10 @@ def df_to_image(df: pd.DataFrame) -> io.BytesIO:
     ax = fig.gca()
     ax.axis('off')
     table = ax.table(cellText=df.values, colLabels=df.columns, cellLoc='center', loc='center')
-    table.scale(1, 1.5)
+    table.scale(1, 1.2)
 
     image_stream = io.BytesIO()
-    fig.savefig(image_stream, format='png', bbox_inches='tight', dpi=DPI, transparent=True)
-    image_stream.seek(0)
-
-    with Image.open(image_stream) as image:
-        image.save(image_stream, format='png', optimize=True)
-
+    fig.savefig(image_stream, format='svg', dpi=DPI, transparent=True)
     image_stream.seek(0)
     plt.close(fig)
     return image_stream
