@@ -17,7 +17,7 @@ def df_to_image(df: pd.DataFrame) -> io.BytesIO:
 
 
 async def send_img_or_msg_if_no_content(
-        message: Message, df: pd.DataFrame, msg: str, value: str
+    message: Message, df: pd.DataFrame, msg: str, value: str
 ) -> Message:
     chat_id = message.chat.id
     if df.empty is True:

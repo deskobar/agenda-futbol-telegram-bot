@@ -26,7 +26,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 
-@app.post('/')
+@app.post("/")
 async def handler(request: Request):
     content = await request.json()
     update = telebot.types.Update.de_json(content)

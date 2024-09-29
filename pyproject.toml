@@ -18,6 +18,9 @@ uvicorn = { extras = ["standard"], version = "^0.31.0" }
 fastapi = "^0.115.0"
 dataframe-image = "^0.2.4"
 
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

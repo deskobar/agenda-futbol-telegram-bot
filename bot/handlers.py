@@ -13,7 +13,7 @@ from bot.answers import (
     VERSION,
     WHEN_WITHOUT_ARGS,
     WHEN_WITH_NO_COINCIDENCES,
-    INVALID_COMMAND
+    INVALID_COMMAND,
 )
 from bot.client import bot
 from bot.common import send_img_or_msg_if_no_content
@@ -28,36 +28,40 @@ from gql_client.queries import (
 from telebot.types import Message
 
 
-@bot.message_handler(commands=['todo'])
+@bot.message_handler(commands=["todo"])
 @waking_up
 async def cmd_all_events(message: Message):
     """
     Return all the events available
     """
     result = await client.execute_async(events)
-    events_result = result['events']
+    events_result = result["events"]
     events_df = pd.DataFrame(events_result)
-    await send_img_or_msg_if_no_content(message, events_df, ALL_WITH_NO_COINCIDENCES, 'uwu')
+    await send_img_or_msg_if_no_content(
+        message, events_df, ALL_WITH_NO_COINCIDENCES, "uwu"
+    )
 
 
-@bot.message_handler(commands=['fecha'])
+@bot.message_handler(commands=["fecha"])
 @waking_up
 async def cmd_date(message: Message):
     """
     Send all the events for a given string date
     """
-    [_command, *body] = message.text.split(' ')
+    [_command, *body] = message.text.split(" ")
     if len(body) != 1:
         await bot.reply_to(message, DATE_WITHOUT_ARGS)
         return
     date = body[0]
     result = await client.execute_async(events_per_date, variable_values={"date": date})
-    events_result = result['eventsPerDate']
+    events_result = result["eventsPerDate"]
     events_df = pd.DataFrame(events_result)
-    await send_img_or_msg_if_no_content(message, events_df, DATE_WITH_NO_COINCIDENCES, date)
+    await send_img_or_msg_if_no_content(
+        message, events_df, DATE_WITH_NO_COINCIDENCES, date
+    )
 
 
-@bot.message_handler(commands=['help', 'start'])
+@bot.message_handler(commands=["help", "start"])
 @waking_up
 async def cmd_help(message: Message):
     """
@@ -66,13 +70,13 @@ async def cmd_help(message: Message):
     await bot.reply_to(message, HOW_TO_USAGE)
 
 
-@bot.message_handler(commands=['set_alias'])
+@bot.message_handler(commands=["set_alias"])
 @waking_up
 async def cmd_set_alias(message: Message):
     """
     Set alias to specific team for a given user
     """
-    [_command, *body] = message.text.split(' ')
+    [_command, *body] = message.text.split(" ")
     if len(body) < 2:
         await bot.reply_to(message, ALIAS_WITHOUT_ARGS)
         return
@@ -83,26 +87,28 @@ async def cmd_set_alias(message: Message):
         variable_values={
             "userId": str(user_id),
             "teamName": " ".join(team_name).lower(),
-            "alias": alias
-        }
+            "alias": alias,
+        },
     )
     await bot.reply_to(message, ALIAS_ADDED_SUCCESSFULLY)
 
 
-@bot.message_handler(commands=['hoy'])
+@bot.message_handler(commands=["hoy"])
 @waking_up
 async def cmd_today(message: Message):
     """
     Send all the events of the current day
     """
-    date = datetime.now(pytz.timezone('America/Santiago')).strftime('%Y-%m-%d')
+    date = datetime.now(pytz.timezone("America/Santiago")).strftime("%Y-%m-%d")
     result = await client.execute_async(events_per_date, variable_values={"date": date})
-    events_result = result['eventsPerDate']
+    events_result = result["eventsPerDate"]
     events_df = pd.DataFrame(events_result)
-    await send_img_or_msg_if_no_content(message, events_df, DATE_WITH_NO_COINCIDENCES, 'hoy')
+    await send_img_or_msg_if_no_content(
+        message, events_df, DATE_WITH_NO_COINCIDENCES, "hoy"
+    )
 
 
-@bot.message_handler(commands=['version'])
+@bot.message_handler(commands=["version"])
 async def cmd_version(message: Message):
     """
     Send a message when the command /version is issued.
@@ -110,13 +116,13 @@ async def cmd_version(message: Message):
     await bot.reply_to(message, VERSION)
 
 
-@bot.message_handler(commands=['cuando'])
+@bot.message_handler(commands=["cuando"])
 @waking_up
 async def cmd_when(message: Message):
     """
     Given all the events that contains a substring given in their columns
     """
-    [_command, *body] = message.text.split(' ')
+    [_command, *body] = message.text.split(" ")
     if len(body) == 0:
         await bot.reply_to(message, WHEN_WITHOUT_ARGS)
     else:
@@ -124,14 +130,13 @@ async def cmd_when(message: Message):
         substring = " ".join(body)
         result = await client.execute_async(
             events_substring,
-            variable_values={
-                "text": substring,
-                "userId": str(user_id)
-            }
+            variable_values={"text": substring, "userId": str(user_id)},
         )
-        events_result = result['eventsMatchText']
+        events_result = result["eventsMatchText"]
         events_df = pd.DataFrame(events_result)
-        await send_img_or_msg_if_no_content(message, events_df, WHEN_WITH_NO_COINCIDENCES, substring)
+        await send_img_or_msg_if_no_content(
+            message, events_df, WHEN_WITH_NO_COINCIDENCES, substring
+        )
 
 
 @bot.message_handler(func=lambda message: True)
