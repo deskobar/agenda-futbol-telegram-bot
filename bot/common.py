@@ -1,34 +1,19 @@
 import pandas as pd
 from telebot.types import Message, InputFile
-import matplotlib.pyplot as plt
 from bot import bot
-from PIL import Image
 
 import io
-import uuid
+import dataframe_image as dfi
 
-from settings import DPI
+from bot.answers import GENERATING_IMAGE, SENDING_IMAGE
 
 
 def df_to_image(df: pd.DataFrame) -> io.BytesIO:
-    plt.ioff()
-    fig = plt.figure(figsize=(df.shape[1] * 2, df.shape[0] * 0.5), num=uuid.uuid4().hex)
-    ax = fig.gca()
-    ax.axis('off')
-    table = ax.table(cellText=df.values, colLabels=df.columns, cellLoc='center', loc='center')
-    table.scale(1, 1.5)
-
-    image_stream = io.BytesIO()
-    fig.savefig(image_stream, format='png', bbox_inches='tight', dpi=DPI, transparent=True)
-    image_stream.seek(0)
-
-    with Image.open(image_stream) as image:
-        image.save(image_stream, format='PNG', optimize=True)
-
-    image_stream.seek(0)
-    plt.close(fig)
-    return image_stream
-
+    """Converts a DataFrame into an image and returns it as a BytesIO stream."""
+    tmp = io.BytesIO()
+    dfi.export(df, tmp, max_rows=-1)
+    tmp.seek(0)
+    return tmp
 
 
 async def send_img_or_msg_if_no_content(
@@ -38,6 +23,10 @@ async def send_img_or_msg_if_no_content(
     if df.empty is True:
         message_sent: Message = await bot.reply_to(message, msg.format(value))
     else:
+        generating_msg = await bot.send_message(chat_id, GENERATING_IMAGE)
         img = df_to_image(df)
+        await bot.delete_message(chat_id, generating_msg.message_id)
+        sending_img = await bot.send_message(chat_id, SENDING_IMAGE)
         message_sent: Message = await bot.send_photo(chat_id, InputFile(img))
+        await bot.delete_message(chat_id, sending_img.message_id)
     return message_sent

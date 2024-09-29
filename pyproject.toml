@@ -14,8 +14,9 @@ pandas = "^2.2.3"
 python-decouple = "^3.8"
 pyngrok = "^7.2.0"
 pytelegrambotapi = "^4.23.0"
-uvicorn = {extras = ["standard"], version = "^0.31.0"}
+uvicorn = { extras = ["standard"], version = "^0.31.0" }
 fastapi = "^0.115.0"
+dataframe-image = "^0.2.4"
 
 [build-system]
 requires = ["poetry-core"]

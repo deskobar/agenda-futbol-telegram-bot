@@ -73,3 +73,7 @@ INVALID_COMMAND = """
 WAKING_UP = "Estaba despertando 🥱. Voy corriendo a procesarlo 🏃‍♂️‍➡️".strip()
 
 SOMETHING_HAPPENED = "Algo salió mal, intenta más tarde 🥺".strip()
+
+GENERATING_IMAGE = "Generando imagen...".strip()
+
+SENDING_IMAGE = "Enviando imagen...".strip()
