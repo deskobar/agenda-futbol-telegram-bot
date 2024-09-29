@@ -18,7 +18,7 @@ def df_to_image(df: pd.DataFrame) -> io.BytesIO:
     table.scale(1, 1.2)
 
     image_stream = io.BytesIO()
-    fig.savefig(image_stream, format='svg', dpi=DPI, transparent=True)
+    fig.savefig(image_stream, format='png', dpi=DPI, transparent=True)
     image_stream.seek(0)
     plt.close(fig)
     return image_stream
