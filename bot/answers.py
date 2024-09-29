@@ -24,6 +24,7 @@ HOW_TO_USAGE = """
     - ormar (SQLAlchemy)
     - Neon Tech (PostgreSQL)
     - pyTelegramBotAPI
+    - Cloud Run
     """.strip()
 
 # /fecha
@@ -53,7 +54,7 @@ ALL_WITH_NO_COINCIDENCES = """
 # /version
 
 VERSION = """
-    3.15.1
+    3.16.0
 """.strip()
 
 # /set_alias

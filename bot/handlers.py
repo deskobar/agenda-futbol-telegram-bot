@@ -137,4 +137,4 @@ async def cmd_when(message: Message):
 @bot.message_handler(func=lambda message: True)
 async def invalid_cmd(message: Message):
     """Default handler for every other text"""
-    await bot.reply_to(message, INVALID_COMMAND)
+    await bot.reply_to(message, HOW_TO_USAGE)
