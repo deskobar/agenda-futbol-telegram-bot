@@ -7,15 +7,15 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "3.10.9"
-aiohttp = "3.8.1"
-gql = "3.4.0"
+aiohttp = "^3.10.8"
+gql = "^3.5.0"
 matplotlib = "^3.9.2"
 pandas = "^2.2.3"
-python-decouple = "3.6"
-pyngrok = "^6.0.0"
+python-decouple = "^3.8"
+pyngrok = "^7.2.0"
 pytelegrambotapi = "^4.23.0"
-uvicorn = {extras = ["standard"], version = "^0.22.0"}
-fastapi = "^0.97.0"
+uvicorn = {extras = ["standard"], version = "^0.31.0"}
+fastapi = "^0.115.0"
 
 [build-system]
 requires = ["poetry-core"]
