@@ -2,7 +2,7 @@ from functools import wraps
 from telebot.types import Message
 from bot import bot
 from bot.answers import SOMETHING_HAPPENED, WAKING_UP
-
+import logging
 
 def waking_up(func):
     @wraps(func)
@@ -17,7 +17,7 @@ def waking_up(func):
             await bot.delete_message(chat_id, message.message_id)
             return result
         except Exception as e:
-            print(f"An error occurred: {str(e)}")
+            logging.error(f"Error in {func.__name__}: {e}")
             message = await bot.send_message(chat_id, SOMETHING_HAPPENED)
 
     return wrapper
