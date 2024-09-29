@@ -54,7 +54,7 @@ ALL_WITH_NO_COINCIDENCES = """
 # /version
 
 VERSION = """
-    3.16.0
+    3.17.0
 """.strip()
 
 # /set_alias
@@ -75,6 +75,6 @@ WAKING_UP = "Estaba despertando 🥱. Voy corriendo a procesarlo 🏃‍♂️�
 
 SOMETHING_HAPPENED = "Algo salió mal, intenta más tarde 🥺".strip()
 
-GENERATING_IMAGE = "Generando imagen...".strip()
+GENERATING_IMAGE = "Generando imagen... 📸".strip()
 
-SENDING_IMAGE = "Enviando imagen...".strip()
+SENDING_IMAGE = "Enviando imagen... 🧳".strip()
