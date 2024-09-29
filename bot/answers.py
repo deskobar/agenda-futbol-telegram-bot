@@ -24,52 +24,52 @@ HOW_TO_USAGE = """
     - ormar (SQLAlchemy)
     - Neon Tech (PostgreSQL)
     - pyTelegramBotAPI
-    """
+    """.strip()
 
 # /fecha
 DATE_WITHOUT_ARGS = """
     Debes enviar /fecha <fecha> en formato YYYY-MM-DD
-"""
+""".strip()
 
 DATE_WITH_NO_COINCIDENCES = """
     No hay eventos agendados aún para {} unu. Prueba con otra fecha
-"""
+""".strip()
 
 # /cuando
 WHEN_WITHOUT_ARGS = """
     Debes enviar /cuando <una palabra>
-"""
+""".strip()
 
 WHEN_WITH_NO_COINCIDENCES = """
     No se encontraron eventos que contengan {} unu.
     Prueba escribiéndolo de otra forma.
-"""
+""".strip()
 
 # /todo
 ALL_WITH_NO_COINCIDENCES = """
     No hay eventos disponibles, prueba más tarde {}.
-"""
+""".strip()
 
 # /version
 
 VERSION = """
-    3.15.0
-"""
+    3.15.1
+""".strip()
 
 # /set_alias
 
 ALIAS_ADDED_SUCCESSFULLY = """
     Alias agregado correctamente!
-"""
+""".strip()
 
 ALIAS_WITHOUT_ARGS = """
     Debes enviar /set_alias <tu equipo> <tu alias en una sola palabra>
-"""
+""".strip()
 
 INVALID_COMMAND = """
     No entiendo el comando que me enviaste, prueba con /help para ver los comandos disponibles.
-"""
+""".strip()
 
-WAKING_UP = "Estaba despertando 🥱. Voy corriendo a procesarlo 🏃‍♂️‍➡️"
+WAKING_UP = "Estaba despertando 🥱. Voy corriendo a procesarlo 🏃‍♂️‍➡️".strip()
 
-SOMETHING_HAPPENED = "Algo salió mal, intenta más tarde 🥺"
+SOMETHING_HAPPENED = "Algo salió mal, intenta más tarde 🥺".strip()
