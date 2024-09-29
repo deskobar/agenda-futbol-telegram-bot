@@ -11,7 +11,7 @@ from bot.answers import GENERATING_IMAGE, SENDING_IMAGE
 def df_to_image(df: pd.DataFrame) -> io.BytesIO:
     """Converts a DataFrame into an image and returns it as a BytesIO stream."""
     tmp = io.BytesIO()
-    dfi.export(df, tmp, max_rows=-1)
+    dfi.export(df, tmp, max_rows=-1, table_conversion="matplotlib")
     tmp.seek(0)
     return tmp
 
