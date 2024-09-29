@@ -1,26 +1,15 @@
-import aiohttp
 import telebot
 from fastapi import FastAPI, Request
-from pyngrok import ngrok
 
 from bot import bot
-from settings import PUBLIC_URL, TELEGRAM_TOKEN
+from settings import PUBLIC_URL
 from contextlib import asynccontextmanager
-import logging
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/setWebhook?url={PUBLIC_URL}"
-    async with aiohttp.ClientSession() as session:
-        async with session.post(url) as r:
-            logging.info("Webhook set with status %s", r.status)
-            app.state.webhook_set = True
+    await bot.set_webhook(PUBLIC_URL)
     yield
-    try:
-        ngrok.kill()
-    except Exception:  # noqa
-        pass
 
 
 app = FastAPI(lifespan=lifespan)
