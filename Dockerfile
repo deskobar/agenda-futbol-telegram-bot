@@ -14,6 +14,13 @@ COPY . .
 
 # Change ownership of the app directory to the non-root user
 RUN groupadd -r appuser && useradd -r -g appuser appuser && chown -R appuser:appuser /app
+
+# Create a writable directory for Matplotlib's cache
+RUN mkdir -p /app/.config/matplotlib && chown -R appuser:appuser /app/.config
+
+# Set the MPLCONFIGDIR environment variable
+ENV MPLCONFIGDIR=/app/.config/matplotlib
+
 # Switch to non-root user
 USER appuser
 
