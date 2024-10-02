@@ -12,8 +12,10 @@ RUN poetry install --no-root
 
 COPY . .
 
-# Change ownership of the app directory to the non-root user
-RUN groupadd -r appuser && useradd -r -g appuser appuser && chown -R appuser:appuser /app
+# Create non-root user and set up directories
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+RUN mkdir -p /home/appuser && chown -R appuser:appuser /home/appuser
+RUN chown -R appuser:appuser /app
 
 # Create a writable directory for Matplotlib's cache
 RUN mkdir -p /app/.config/matplotlib && chown -R appuser:appuser /app/.config
@@ -25,6 +27,7 @@ ENV MPLCONFIGDIR=/app/.config/matplotlib
 USER appuser
 
 ENV PORT=8080
+ENV HOME=/home/appuser
 
 EXPOSE ${PORT}
 
