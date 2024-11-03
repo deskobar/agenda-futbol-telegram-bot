@@ -23,5 +23,5 @@ async def handler(request: Request):
     return {"msg": "ok"}
 
 @app.get("/")
-async def get_handler(request: Request):
+async def root():
     return {"msg": "ok"}
