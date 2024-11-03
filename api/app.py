@@ -21,3 +21,7 @@ async def handler(request: Request):
     update = telebot.types.Update.de_json(content)
     await bot.process_new_updates([update])
     return {"msg": "ok"}
+
+@app.get("/")
+async def get_handler(request: Request):
+    return {"msg": "ok"}
